@@ -1,4 +1,5 @@
-
+#' help function
+#' some tips of visualization
 
 helpfunOfVis <- function(){
   cat("face参数的可选包括(plain", "italic", "bold", "bold.italic)\n")
@@ -7,7 +8,6 @@ helpfunOfVis <- function(){
   cat("点的类型包括.,o,x,s,d,p,h,+,-,*等等\n")
 }
 
-# # 1. 标题 -----------------------------------------------------------------
 
 #' Title Setting
 #'
@@ -23,6 +23,7 @@ TitleSetting <- function(titleText = "标题",
                          captionText = "说明文字",
                          xlabText = "x轴线标签",
                          ylabText = "y轴线标签"){
+  require(ggplot2)
   title <- labs(title = titleText,subtitle = subtitleText,
                 caption = captionText,x=xlabText,y=ylabText)
   return(title)
@@ -50,6 +51,7 @@ TiitleTheme <- function(ploTitleFace = NULL,
                         ploTitleHjust=NULL,
                         ploTitleVjust=NULL,
                         ploTitleAngle=NULL){
+  require(ggplot2)
   titleTheme <- theme(plot.title = element_text(
     face = ploTitleFace, # ("plain", "italic", "bold", "bold.italic")
     colour = ploTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
@@ -61,6 +63,7 @@ TiitleTheme <- function(ploTitleFace = NULL,
   ))
   return(titleTheme)
 }
+
 
 
 
@@ -83,6 +86,7 @@ SubtitleTheme <- function(ploSubtitleFace=NULL, # 副标题
                           ploSubtitleHjust=NULL, # 水平位置
                           ploSubtitleVjust=NULL, #垂直位置
                           ploSubtitleAngle=0){
+  require(ggplot2)
   subtitleTheme <- theme(plot.subtitle = element_text(
     face = ploSubtitleFace, # ("plain", "italic", "bold", "bold.italic")
     colour = ploSubtitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
@@ -117,6 +121,7 @@ CaptionTheme <- function(ploCaptionFace=NULL, # 说明文字
                          ploCaptionHjust=NULL, # 水平
                          ploCaptionVjust=NULL, # 垂直
                          ploCaptionAngle=NULL){
+  require(ggplot2)
   captionTheme <- theme(plot.caption = element_text(
     face = ploCaptionFace, # ("plain", "italic", "bold", "bold.italic")
     colour = ploCaptionColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
@@ -133,7 +138,6 @@ CaptionTheme <- function(ploCaptionFace=NULL, # 说明文字
 
 
 
-# # 2. 标签 -----------------------------------------------------------------
 
 #' Add annotate
 #'
@@ -154,7 +158,8 @@ AddLabel <- function(textLabelx=NULL, # 标签x轴位置
                      textLabelSize=NULL, # 大小
                      textLabelAngle=NULL, # 角度
                      textLabelFontface=NULL # 粗体/斜体
-                     ){
+){
+  require(ggplot2)
   textLabel <- annotate(geom = "text",x = textLabelx,y = textLabely,#位置
                         label=textLabel,
                         color=textLabelColor,# 颜色
@@ -166,7 +171,6 @@ AddLabel <- function(textLabelx=NULL, # 标签x轴位置
 
 
 
-# # 3 图例 ------------------------------------------------------------------
 
 
 # color 图例
@@ -204,24 +208,25 @@ guideColorSetting <- function(guideTitle="图例标题", # 图例标题
                               guideLabelHjust=NULL, # 水平位置
                               guideLabelVjust=NULL, # 垂直位置
                               guideLabelAngle=NULL # 角度
-                              ){
+){
+  require(ggplot2)
   guideSetting <-guides(colour= guide_legend(title=guideTitle,
-                                              title.theme = element_text(
-                                                face = guideTitleFace, # ("plain", "italic", "bold", "bold.italic")
-                                                colour = guideTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                                size = guideTitleSize,
-                                                hjust = guideTitleHjust, #0.5, # [0,1] 水平位置
-                                                vjust = guideTitleVjust, #0.9, # [0,1] 垂直位置
-                                                angle = guideTitleAngle, # [0,360]角度
-                                              ),
-                                              label.theme = element_text(
-                                                face = guideLabelFace, # ("plain", "italic", "bold", "bold.italic")
-                                                colour = guideLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                                size = guideLabelSize,
-                                                hjust = guideLabelHjust, #0.5, # [0,1] 水平位置
-                                                vjust = guideLabelVjust, #0.9, # [0,1] 垂直位置
-                                                angle = guideLabelAngle, # [0,360]角度
-                                              ))
+                                             title.theme = element_text(
+                                               face = guideTitleFace, # ("plain", "italic", "bold", "bold.italic")
+                                               colour = guideTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                               size = guideTitleSize,
+                                               hjust = guideTitleHjust, #0.5, # [0,1] 水平位置
+                                               vjust = guideTitleVjust, #0.9, # [0,1] 垂直位置
+                                               angle = guideTitleAngle, # [0,360]角度
+                                             ),
+                                             label.theme = element_text(
+                                               face = guideLabelFace, # ("plain", "italic", "bold", "bold.italic")
+                                               colour = guideLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                               size = guideLabelSize,
+                                               hjust = guideLabelHjust, #0.5, # [0,1] 水平位置
+                                               vjust = guideLabelVjust, #0.9, # [0,1] 垂直位置
+                                               angle = guideLabelAngle, # [0,360]角度
+                                             ))
   )
   return(guideSetting)
 }
@@ -239,7 +244,8 @@ guideColorSetting <- function(guideTitle="图例标题", # 图例标题
 #'
 guideColorLabelName <- function(guideLabelName=c("a","b"), # 图例标签名称/
                                 guideLabelcolor=c("red","yellow") # 图例标签颜色
-                                ){
+){
+  require(ggplot2)
   guideLabel <- scale_color_manual(labels = guideLabelName,values = guideLabelcolor)
   # guideLabel <- lims(colour = c("a","b"))
   return(guideLabel)
@@ -270,35 +276,36 @@ p+guideColorLabelName()+guideColorSetting()
 #'
 
 guideFillSetting <- function(guideTitle="图例标题",
-                              guideTitleFace=NULL,
-                              guideTitleColor=NULL,
-                              guideTitleSize=NULL,
-                              guideTitleHjust=NULL,
-                              guideTitleVjust=NULL,
-                              guideTitleAngle=NULL,
-                              guideLabelFace=NULL,
-                              guideLabelColor=NULL,
-                              guideLabelSize=NULL,
-                              guideLabelHjust=NULL,
-                              guideLabelVjust=NULL,
-                              guideLabelAngle=NULL){
+                             guideTitleFace=NULL,
+                             guideTitleColor=NULL,
+                             guideTitleSize=NULL,
+                             guideTitleHjust=NULL,
+                             guideTitleVjust=NULL,
+                             guideTitleAngle=NULL,
+                             guideLabelFace=NULL,
+                             guideLabelColor=NULL,
+                             guideLabelSize=NULL,
+                             guideLabelHjust=NULL,
+                             guideLabelVjust=NULL,
+                             guideLabelAngle=NULL){
+  require(ggplot2)
   guideSetting <-guides(fill= guide_legend(title=guideTitle,
-                                             title.theme = element_text(
-                                               face = guideTitleFace, # ("plain", "italic", "bold", "bold.italic")
-                                               colour = guideTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                               size = guideTitleSize,
-                                               hjust = guideTitleHjust, #0.5, # [0,1] 水平位置
-                                               vjust = guideTitleVjust, #0.9, # [0,1] 垂直位置
-                                               angle = guideTitleAngle, # [0,360]角度
-                                             ),
-                                             label.theme = element_text(
-                                               face = guideLabelFace, # ("plain", "italic", "bold", "bold.italic")
-                                               colour = guideLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                               size = guideLabelSize,
-                                               hjust = guideLabelHjust, #0.5, # [0,1] 水平位置
-                                               vjust = guideLabelVjust, #0.9, # [0,1] 垂直位置
-                                               angle = guideLabelAngle, # [0,360]角度
-                                             ))
+                                           title.theme = element_text(
+                                             face = guideTitleFace, # ("plain", "italic", "bold", "bold.italic")
+                                             colour = guideTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                             size = guideTitleSize,
+                                             hjust = guideTitleHjust, #0.5, # [0,1] 水平位置
+                                             vjust = guideTitleVjust, #0.9, # [0,1] 垂直位置
+                                             angle = guideTitleAngle, # [0,360]角度
+                                           ),
+                                           label.theme = element_text(
+                                             face = guideLabelFace, # ("plain", "italic", "bold", "bold.italic")
+                                             colour = guideLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                             size = guideLabelSize,
+                                             hjust = guideLabelHjust, #0.5, # [0,1] 水平位置
+                                             vjust = guideLabelVjust, #0.9, # [0,1] 垂直位置
+                                             angle = guideLabelAngle, # [0,360]角度
+                                           ))
   )
   return(guideSetting)
 }
@@ -316,14 +323,14 @@ guideFillSetting <- function(guideTitle="图例标题",
 #''
 
 guideFillLabelName <- function(guideLabelName=c("a","b"),
-                                guideLabelcolor=c("red","yellow")){
+                               guideLabelcolor=c("red","yellow")){
+  require(ggplot2)
   guideLabel <- scale_fill_manual(labels = guideLabelName,values = guideLabelcolor)
   # guideLabel <- lims(colour = c("a","b"))
   return(guideLabel)
 }
 
 
-# # 4 坐标轴 -----------------------------------------------------------------
 
 #' Axis x
 #'
@@ -366,7 +373,8 @@ XlabTheme <- function(xlabAxisTitleTextFace=NULL, # x轴标题粗体/斜体等
                       xlabAxisLineSize=NULL, # x坐标轴线大小
                       xlabAxisLineColor=NULL, # 颜色
                       xlabAxisLineType=NULL # 线条类型
-                      ){
+){
+  require(ggplot2)
   xlabTheme <- theme(axis.title.x= element_text(
     face = xlabAxisTitleTextFace, # ("plain", "italic", "bold", "bold.italic")
     colour = xlabAxisTitleTextColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
@@ -435,6 +443,7 @@ YlabTheme <- function(ylabAxisTitleTextFace=NULL,
                       ylabAxisLineSize=NULL,
                       ylabAxisLineColor=NULL,
                       ylabAxisLineType=NULL){
+  require(ggplot2)
   ylabTheme <- theme(axis.title.y= element_text(
     face = ylabAxisTitleTextFace, # ("plain", "italic", "bold", "bold.italic")
     colour = ylabAxisTitleTextColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
@@ -471,6 +480,7 @@ YlabTheme <- function(ylabAxisTitleTextFace=NULL,
 #' @return A ggplot2 object
 
 Xlim <- function(start=NULL,end=NULL){ # 开始位置，结束位置
+  require(ggplot2)
   xlim(start,end)
 }
 
@@ -483,156 +493,10 @@ Xlim <- function(start=NULL,end=NULL){ # 开始位置，结束位置
 #' @return A ggplot2 object
 
 Ylim <- function(start=NULL,end=NULL){
+  require(ggplot2)
   ylim(start,end)
 }
-p+guideColorLabelName()+guideColorSetting() +Xlim(0,250000)
 
 
-# # 5 点设置 -----------------------------------------------------------------
-
-
-# "1、该模块根据图表中的元素判断是否显示，当图表中存在“点”的元素时，该模块才显示；
-# 2、支持设置点的类型：圆点
-# 空心圆
-# 菱形
-# 矩形
-# 三角
-# 3、支持设置点的大小"
-
-
-
-
-
-
-# # 6 线设置 -----------------------------------------------------------------
-
-
-
-# "1、该模块根据图表种的元素判断是否显示，当图表中存在“线”的元素时，该模块才显示；
-# 2、支持设置线的类型
-# 3、支持设置线的粗细
-# 4、支持设置为平滑曲线，勾选时图表为平滑曲线，不勾选时图表为折线。"
-
-
-
-
-# 7. 条块设置 ------------------------------------------------------------------
-
-# "1、该模块根据图表种的元素判断是否显示，当图表中存在“条块”的元素时，该模块才显示；
-# 2、支持设置条块的宽度"
-
-
-# # # 散点图 -------------------------------------------------------------------
-#
-#
-# PlotData <- data.frame(x=rnorm(n = 1000,),y=rnorm(1000,0,10))
-#
-# # lineType 可选值
-# # "blank"：空白线条 对应1
-# # "solid"：实线
-# # "dashed"：虚线
-# # "dotted"：点线
-# # "dotdash"：点划线
-# # "longdash"：长划线
-# # "twodash"：两点划线
-#
-# # 基础图形
-# CEP <- function(PlotData, # 数据集/格式参看PlotData
-#                 center=F, # 坐标轴是否居中
-#                 pointShape=20, # 点的类型0-25
-#                 pointColor="black", # 颜色
-#                 pointSize=1, # 大小
-#                 smooth=T, # 平滑曲线还是折线
-#                 lineColor="black", # 线条颜色
-#                 lineType=1,  # 类型
-#                 lineWidth=1 # 宽度
-#                 ){
-#   if(smooth==T){
-#     if(center==F){
-#       require(ggplot2)
-#       p <- ggplot(data=PlotData,aes(x=x,y=y))+geom_point(shape=pointShape,color=pointColor,size=pointSize)+geom_smooth(color=lineColor,linetype=lineType,linewidth=lineWidth,se=F)+
-#         theme_classic() + showtext::showtext.auto()
-#       return(p)
-#     }else{
-#       require(ggh4x)
-#       require(ggplot2)
-#       p <- ggplot(data=PlotData,aes(x=x,y=y))+geom_point(shape=pointShape,color=pointColor,size=pointSizee)+geom_smooth(color=lineColor,linetype=lineType,linewidth=lineWidth,se=F)+
-#         theme_classic() + showtext::showtext.auto()+coord_axes_inside(labels_inside = TRUE)
-#       return(p)
-#     }
-#   }else{
-#     if(center==F){
-#       require(ggplot2)
-#       p <- ggplot(data=PlotData,aes(x=x,y=y))+geom_point(shape=pointShape,color=pointColor,size=pointSize)+geom_line(color=lineColor,linetype=lineType,linewidth=lineWidth)+
-#         theme_classic() + showtext::showtext.auto()
-#       return(p)
-#     }else{
-#       require(ggh4x)
-#       require(ggplot2)
-#       p <- ggplot(data=PlotData,aes(x=x,y=y))+geom_point(shape=pointShape,color=pointColor,size=pointSize)+geom_line()+
-#         theme_classic() + showtext::showtext.auto()+coord_axes_inside(labels_inside = TRUE)
-#       return(p)
-#     }
-#   }
-#
-#
-# }
-#
-# CEP(PlotData,lineType = 5,lineWidth = 0.5,smooth = F)
-#
-#
-#
-# # 成本可接受曲线图 --------------------------------------------------------------
-#
-# # cea_out$mce
-# CEAC <- function(PlotData, # 数据集
-#                  lineColor, # 线条颜色
-#                  linetype, # 线条
-#                  linewidth # 线条宽度
-#                  ){
-#   require(ggplot2)
-#   p <- ggplot(PlotData,aes(x=k,y=prob,color=as.factor(strategy_id)))+
-#     geom_line(color=lineColor,linetype=lineType,linewidth=lineWidth)+ theme_classic() + showtext::showtext.auto()
-#   return(p)
-# }
-#
-#
-#
-#
-# CEAC(cea_out$mce)
-#
-#
-#
-#
-#
-# # # 龙卷风图 ------------------------------------------------------------------
-# # mce
-#
-# library(ggplot2)
-#
-# #
-# x <- load("/Users/milin/Library/Containers/com.tencent.xinWeChat/Data/Library/Application\ Support/com.tencent.xinWeChat/2.0b4.0.9/53566e35a70cea7efea3dd23a98b7c78/Message/MessageTemp/91cd85d3f31000ac413bdbff4e17f50f/File/psm-tornado-龙卷风图数据.Rdata")
-# PlotData <- get(x)
-#
-# Tornado <- function(PlotData, # 数据
-#                     barWidth=NULL  # 宽度0-1
-#                     ){
-#   p <- ggplot(PlotData, aes(var, value, fill=as.factor(level))) +
-#     coord_flip() +
-#     theme_classic()+
-#     geom_bar(position="identity", stat="identity",width=barWidth) +
-#     theme(legend.position="top", axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, size = 10))
-#   return(p)
-# }
-#
-# p <- Tornado(PlotData = PlotData[-c(9,10),],barWidth = 0.9)
-#
-# p
-#
-#
-#
-#
-#
-# # 调整像素并且保存图片 --------------------------------------------------------------
 
 # ggsave("test2.png", units="in", dpi=300, width=4, height=4, device="png")
