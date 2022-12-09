@@ -1,11 +1,15 @@
 Package: DMAR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Quick data manipulation and visualization
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Milin
+Maintainer: Milin <15527504293@163.com>
+Description: Quick data manipulation and visualization
+License: MIT
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.2.2
+Imports: 
+    dplyr,
+    ggplot2,
+    recipes

@@ -1,6 +1,6 @@
 # Hello, world!
 #
-# This is an example function named 'hello' 
+# This is an example function named 'hello'
 # which prints 'Hello, world!'.
 #
 # You can learn more about package authoring with RStudio at:
@@ -16,3 +16,9 @@
 hello <- function() {
   print("Hello, world!")
 }
+
+# ggplot2,tidyverse
+
+# usethis::use_package("ggplot2")
+# usethis::use_package("dplyr")
+# usethis::use_package("recipes")
