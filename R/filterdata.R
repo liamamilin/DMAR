@@ -29,6 +29,29 @@ filterFun <- function(formula = formula(NULL),
 }
 
 
+#' split data
+#'
+#' @param  data a dataframe of dataset
+#' @param  p split probability
+#' @return a list of split dataset
+#' @examples
+#' splitData(iris)
+
+
+splitData <- function(data,p=c(0.8,0.2)){
+  require(scorecard)
+  data_list <- split_df(data, ratio = p)
+  return(data_list)
+
+}
+
+
+
+
+
+
+
+
 
 
 
