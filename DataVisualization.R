@@ -33,6 +33,7 @@ TitleSetting <- function(titleText = "标题",
 
 
 
+
 #' Set Title theme
 #'
 #' @param ploTitleFace title face
