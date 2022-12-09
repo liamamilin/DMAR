@@ -30,7 +30,6 @@ A recipe object
 filter data with cor,miss, nzv
 }
 \examples{
-data(credit_data, package = "modeldata")
-result <- filterFun(Status ~ ., data = credit_data,data = credit_data)
-bake(result,credit_data)
+re <- filterFun(Species~.,data = iris)
+result <- bake(re,iris)
 }

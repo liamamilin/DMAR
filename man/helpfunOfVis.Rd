@@ -11,3 +11,6 @@ helpfunOfVis()
 help function
 some tips of visualization
 }
+\examples{
+helpfunOfVis()
+}

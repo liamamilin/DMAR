@@ -12,7 +12,7 @@ Ylim(start = NULL, end = NULL)
 \item{end}{end point of y axis}
 }
 \value{
-A ggplot2 object
+A ggplot2 object <-
 }
 \description{
 Axis y range

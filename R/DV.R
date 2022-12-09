@@ -1,5 +1,7 @@
 #' help function
 #' some tips of visualization
+#' @examples
+#' helpfunOfVis()
 
 helpfunOfVis <- function(){
   cat("face参数的可选包括(plain", "italic", "bold", "bold.italic)\n")
@@ -7,6 +9,9 @@ helpfunOfVis <- function(){
   cat("线条类型可选参数包括：blank,solid,dashed,dotted,dotdash,longdash,twodash.\n")
   cat("点的类型包括.,o,x,s,d,p,h,+,-,*等等\n")
 }
+
+
+
 
 
 #' Title Setting
@@ -252,7 +257,6 @@ guideColorLabelName <- function(guideLabelName=c("a","b"), # 图例标签名称/
 }
 
 
-p+guideColorLabelName()+guideColorSetting()
 
 
 # fill 图例 龙卷风图使用下面两个函数修改图例
@@ -490,7 +494,7 @@ Xlim <- function(start=NULL,end=NULL){ # 开始位置，结束位置
 #'
 #' @param start start point of y axis
 #' @param end end point of y axis
-#' @return A ggplot2 object
+#' @return A ggplot2 object <-
 
 Ylim <- function(start=NULL,end=NULL){
   require(ggplot2)
