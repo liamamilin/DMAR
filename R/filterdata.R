@@ -22,7 +22,7 @@ filterFun <- function(formula = formula(NULL),
   ad_rec <- recipe(as.formula(formula), data = data) %>%
     step_corr(all_numeric_predictors(),threshold=corthreshold) %>%
     step_filter_missing(all_predictors(),threshold = misthreshold) %>%
-    step_nzv(all_predictors()) %>%
+    step_nzv(all_numeric_predictors()) %>%
     prep()
   return(ad_rec)
 
