@@ -29,6 +29,7 @@ TitleSetting <- function(titleText = NULL,
                          xlabText = NULL,
                          ylabText = NULL){
   require(ggplot2)
+  showtext::showtext_auto()
   title <- labs(title = titleText,subtitle = subtitleText,
                 caption = captionText,x=xlabText,y=ylabText)
   return(title)
@@ -165,6 +166,7 @@ AddLabel <- function(textLabelx=NULL, # 标签x轴位置
                      textLabelFontface=NULL # 粗体/斜体
 ){
   require(ggplot2)
+  showtext::showtext_auto()
   textLabel <- annotate(geom = "text",x = textLabelx,y = textLabely,#位置
                         label=textLabel,
                         color=textLabelColor,# 颜色
