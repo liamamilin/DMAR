@@ -51,7 +51,7 @@ TitleSetting <- function(titleText = NULL,
 #' @param ploTitleAngle title angle
 #' @return  A ggolot2 object
 #'
-TiitleTheme <- function(ploTitleFace = NULL,
+TitleTheme <- function(ploTitleFace = NULL,
                         ploTitleColor = NULL,
                         ploTitleSize=NULL,
                         ploTitleHjust=NULL,
