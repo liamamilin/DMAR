@@ -253,6 +253,7 @@ guideColorLabelName <- function(guideLabelName=c("a","b"), # 图例标签名称/
                                 guideLabelcolor=c("red","yellow") # 图例标签颜色
 ){
   require(ggplot2)
+  showtext::showtext_auto()
   guideLabel <- scale_color_manual(labels = guideLabelName,values = guideLabelcolor)
   # guideLabel <- lims(colour = c("a","b"))
   return(guideLabel)
@@ -331,6 +332,7 @@ guideFillSetting <- function(guideTitle="图例标题",
 guideFillLabelName <- function(guideLabelName=c("a","b"),
                                guideLabelcolor=c("red","yellow")){
   require(ggplot2)
+  showtext::showtext_auto()
   guideLabel <- scale_fill_manual(labels = guideLabelName,values = guideLabelcolor)
   # guideLabel <- lims(colour = c("a","b"))
   return(guideLabel)
