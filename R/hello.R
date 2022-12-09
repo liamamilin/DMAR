@@ -22,3 +22,4 @@ hello <- function() {
 # usethis::use_package("ggplot2")
 # usethis::use_package("dplyr")
 # usethis::use_package("recipes")
+# usethis::use_package("modeldata")

@@ -8,9 +8,7 @@
 #' @param method method of corr
 #' @param misthreshold threshold of miss value proportion
 #' @return A recipe object
-#' @example data(credit_data, package = "modeldata")
-#' @example result <- filterFun(Status ~ ., data = credit_data,data = credit_data)
-#' @example bake(result,credit_data)
+
 
 filterFun <- function(formula = formula(NULL),
                       data,corthreshold=0.9,

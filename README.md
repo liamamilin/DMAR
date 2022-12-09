@@ -3,7 +3,7 @@
 安装
 
 ```
-devtools::install_github("liamamilin/graphicFun")
+devtools::install_github("liamamilin/DMAR")
 ```
 
 
