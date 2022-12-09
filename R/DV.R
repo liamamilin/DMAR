@@ -30,7 +30,8 @@ TitleSetting <- function(titleText = "标题",
                          ylabText = "y轴线标签"){
   require(ggplot2)
   title <- labs(title = titleText,subtitle = subtitleText,
-                caption = captionText,x=xlabText,y=ylabText)
+                caption = captionText,x=xlabText,y=ylabText)+
+    showtext::showtext.auto()
   return(title)
 
 }
@@ -171,7 +172,7 @@ AddLabel <- function(textLabelx=NULL, # 标签x轴位置
                         size = textLabelSize, # 大小
                         angle=textLabelAngle,
                         fontface=textLabelFontface# 粗体
-  )
+  )+showtext::showtext.auto()
 }
 
 
