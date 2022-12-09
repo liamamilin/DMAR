@@ -23,15 +23,14 @@ helpfunOfVis <- function(){
 #' @param ylabText ylab text
 #' @return  A ggolot2 object
 
-TitleSetting <- function(titleText = "标题",
-                         subtitleText = "副标题",
-                         captionText = "说明文字",
-                         xlabText = "x轴线标签",
-                         ylabText = "y轴线标签"){
+TitleSetting <- function(titleText = NULL,
+                         subtitleText = NULL,
+                         captionText = NULL,
+                         xlabText = NULL,
+                         ylabText = NULL){
   require(ggplot2)
   title <- labs(title = titleText,subtitle = subtitleText,
-                caption = captionText,x=xlabText,y=ylabText)+
-    showtext::showtext.auto()
+                caption = captionText,x=xlabText,y=ylabText)
   return(title)
 
 }
@@ -172,7 +171,7 @@ AddLabel <- function(textLabelx=NULL, # 标签x轴位置
                         size = textLabelSize, # 大小
                         angle=textLabelAngle,
                         fontface=textLabelFontface# 粗体
-  )+showtext::showtext.auto()
+  )
 }
 
 
