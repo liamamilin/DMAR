@@ -49,8 +49,46 @@ splitData <- function(data,p=c(0.8,0.2)){
 
 
 
+#' Classificatio model evaluation function
+#'
+#' @param truth lable of data
+#' @param estimate prediction of model
+#' @return a list of result
+#' @examples
+#' data("two_class_example")
+#' classificationModelEva(two_class_example$truth,two_class_example$predicted)
+
+classificationModelEva <- function(truth,estimate){
+  require(yardstick)
+  sens.result <- sensitivity_vec(truth = truth,estimate = estimate)
+  spec.result <- specificity_vec(truth = truth,estimate = estimate)
+  accuracy.result <- accuracy_vec(truth = truth,estimate = estimate)
+
+  return(list("sensitive"=sens.result,"specificity"=spec.result,
+              "accuracy"=accuracy.result))
+}
 
 
+
+#' Regression model evaluation function
+#'
+#' @param truth lable of data
+#' @param estimate prediction of model
+#' @return a list of result
+#' @examples
+#' data("solubility_test")
+#' regModelEva(solubility_test$solubility,solubility_test$prediction)
+
+
+
+regModelEva <- function(truth,estimate){
+  require(yardstick)
+  rmse.result <- rmse_vec(truth,estimate)
+  mase.result <- mase_vec(truth,estimate)
+
+  return(list("Root mean squared error"=rmse.result,
+              "Mean absolute scaled error"=mase.result))
+}
 
 
 

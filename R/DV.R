@@ -41,6 +41,7 @@ TitleSetting <- function(titleText = NULL,
 
 
 
+
 #' Set Title theme
 #'
 #' @param ploTitleFace title face
@@ -71,6 +72,9 @@ TitleTheme <- function(ploTitleFace = NULL,
 }
 
 
+# p+TitleSetting(titleText = "标题",subtitleText = "副标题",captionText = "图形解释",xlabText = "x轴线标签",ylabText = "y轴线标签")+
+#   TitleTheme(ploTitleFace = "bold.italic",ploTitleColor = "red",ploTitleSize = 20,ploTitleHjust = 0.5,ploTitleVjust = 0.5)+
+#   XlabTheme(xlabAxisTitleTextFace = "italic",xlabAxisTitleTextColor = "grey")
 
 
 

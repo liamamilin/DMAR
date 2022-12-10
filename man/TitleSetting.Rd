@@ -5,11 +5,11 @@
 \title{Title Setting}
 \usage{
 TitleSetting(
-  titleText = "标题",
-  subtitleText = "副标题",
-  captionText = "说明文字",
-  xlabText = "x轴线标签",
-  ylabText = "y轴线标签"
+  titleText = NULL,
+  subtitleText = NULL,
+  captionText = NULL,
+  xlabText = NULL,
+  ylabText = NULL
 )
 }
 \arguments{
