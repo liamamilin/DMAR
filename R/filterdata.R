@@ -92,5 +92,33 @@ regModelEva <- function(truth,estimate){
 
 
 
+#' Scale data
+#'
+#' @param data dataset
+#' @param col column of dataset
+#' @param all if all=F, remove original column, otherwise keep
+#' @param center logical value or numeric vector of length equal to the number of columns
+#' @param scale logical value or numeric vector of length equal to the number of columns
+#' @return scale dataset
+#' @examples
+#' # scale data to 0-1
+#' maxs <- apply(iris[,c(1,2)], 2, max)
+#' mins <- apply(iris[,c(1,2)], 2, min)
+#' #scaleData(iris,col = c(1,2),all = T,center = mins,scale = maxs-mins)
 
+scaleData <- function(data,col,all=F,center=T,scale=T){
+  require(dplyr)
+  scaled_data <- data[,col] %>%
+    scale(center = center,scale = scale)
+  if(all==F){
+    data <- data[,-col]
+    data <- data %>% cbind(data.frame(scaled_data))
+    return(data)
+  }else{
+    scaled_data <- data.frame(scaled_data)
+    n <- names(scaled_data)
+    names(scaled_data) <- paste(n,"_scale",sep = "")
+    return(data %>% cbind((scaled_data)))
+  }
+}
 
