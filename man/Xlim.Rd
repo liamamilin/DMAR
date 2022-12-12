@@ -4,7 +4,7 @@
 \alias{Xlim}
 \title{Axis x range}
 \usage{
-Xlim(start = NULL, end = NULL, Breaks)
+Xlim(start = NULL, end = NULL, Breaks = waiver())
 }
 \arguments{
 \item{start}{start point of x axis}

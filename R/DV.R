@@ -402,9 +402,9 @@ XlabTheme <- function(xlabAxisTitleTextFace=NULL, # x轴标题粗体/斜体等
     hjust = xlabAxisTextHjust, # [0,1] 水平位置
     vjust = xlabAxisTextVjust, # [0,1] 垂直位置
     angle = xlabAxisTextAngle, # [0,360]角度
-  ),axis.ticks.x = element_line(size = xlabAxisTicksSize, color=xlabAxisTicksColor), # 沿轴的记号
+  ),axis.ticks.x = element_line(linewidth = xlabAxisTicksSize, color=xlabAxisTicksColor), # 沿轴的记号
   axis.ticks.length.x   = unit(xlabAxisTicksLength, "cm"), #  刻度线长度
-  axis.line.x  = element_line(size = xlabAxisLineSize, colour = xlabAxisLineColor, linetype=xlabAxisLineType)# 修改轴线
+  axis.line.x  = element_line(linewidth = xlabAxisLineSize, colour = xlabAxisLineColor, linetype=xlabAxisLineType)# 修改轴线
 
 
   )
@@ -471,9 +471,9 @@ YlabTheme <- function(ylabAxisTitleTextFace=NULL,
     hjust = ylabAxisTextHjust, # [0,1] 水平位置
     vjust = ylabAxisTextVjust, # [0,1] 垂直位置
     angle = ylabAxisTextAngle, # [0,360]角度
-  ),axis.ticks.y = element_line(size = ylabAxisTicksSize, color=ylabAxisTicksColor), # 沿轴的记号
+  ),axis.ticks.y = element_line(linewidth = ylabAxisTicksSize, color=ylabAxisTicksColor), # 沿轴的记号
   axis.ticks.length.y   = unit(ylabAxisTicksLength, "cm"), #  刻度线长度
-  axis.line.y  = element_line(size = ylabAxisLineSize, colour = ylabAxisLineColor, linetype=ylabAxisLineType)# 修改轴线
+  axis.line.y  = element_line(linewidth = ylabAxisLineSize, colour = ylabAxisLineColor, linetype=ylabAxisLineType)# 修改轴线
 
 
   )
@@ -493,7 +493,7 @@ YlabTheme <- function(ylabAxisTitleTextFace=NULL,
 #' @param Breaks A numeric vector of positions
 #' @return A ggplot2 object
 
-Xlim <- function(start=NULL,end=NULL,Breaks){ # 开始位置，结束位置
+Xlim <- function(start=NULL,end=NULL,Breaks=waiver()){ # 开始位置，结束位置
   require(ggplot2)
   scale_x_continuous(limits = c(start,end),breaks = Breaks)
 }
@@ -506,7 +506,7 @@ Xlim <- function(start=NULL,end=NULL,Breaks){ # 开始位置，结束位置
 #' @param Breaks A numeric vector of positions
 #' @return A ggplot2 object <-
 
-Ylim <- function(start=NULL,end=NULL,Breaks){
+Ylim <- function(start=NULL,end=NULL,Breaks=waiver()){
   require(ggplot2)
   scale_x_continuous(limits = c(start,end),breaks = Breaks)
 }
@@ -525,4 +525,23 @@ lineType <- function(value= c(1,1)){
 }
 
 
+#' Add line
+#'
+#' @param xstart  x start point
+#' @param ystart y start point
+#' @param xend x end point
+#' @param yend y end point
+#' @param color color of line
+#' @param linetype line type
+#' @param lineWidth linee width
+#' @return A ggplot2 object
+
+
+addLine <- function(xstart,ystart,xend,yend,color="black",lineType=1,lineWidth=1){
+  require(ggplot2)
+  p <- geom_segment(x=xstart,y=ystart,xend=xend,yend=yend,color=color,linetype=lineType,linewidth=lineWidth)
+
+  return(p)
+
+}
 # ggsave("test2.png", units="in", dpi=300, width=4, height=4, device="png")

@@ -4,7 +4,7 @@
 \alias{Ylim}
 \title{Axis y range}
 \usage{
-Ylim(start = NULL, end = NULL, Breaks)
+Ylim(start = NULL, end = NULL, Breaks = waiver())
 }
 \arguments{
 \item{start}{start point of y axis}
