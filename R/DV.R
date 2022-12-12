@@ -8,6 +8,7 @@ helpfunOfVis <- function(){
   cat("颜色可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2\n")
   cat("线条类型可选参数包括：blank,solid,dashed,dotted,dotdash,longdash,twodash.\n")
   cat("点的类型包括.,o,x,s,d,p,h,+,-,*等等\n")
+  cat("参考：https://rpubs.com/liam/plotdetail")
 }
 
 

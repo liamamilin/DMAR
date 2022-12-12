@@ -1,0 +1,179 @@
+---
+title: "plotdetail"
+author: "Liam"
+date: "2022-12-12"
+output: 
+  html_document:
+    toc: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+# color and fill 
+
+
+```{r}
+ cat("颜色可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2\n")
+```
+
+
+# Lines
+
+1. 一个数字
+```{r}
+library(ggplot2)
+lty <- c("solid", "dashed", "dotted", "dotdash", "longdash", "twodash")
+linetypes <- data.frame(
+  y = seq_along(lty),
+  lty = lty
+) 
+ggplot(linetypes, aes(0, y)) + 
+  geom_segment(aes(xend = 5, yend = y, linetype = lty)) + 
+  scale_linetype_identity() + 
+  geom_text(aes(label = lty), hjust = 0, nudge_y = 0.2) +
+  scale_x_continuous(NULL, breaks = NULL) + 
+  scale_y_reverse(NULL, breaks = NULL)
+```
+
+2. 开/关线段的长度。这是通过包含 2、4、6 或 8 个十六进制数字的字符串完成的，这些数字给出了连续长度的长度。
+
+```{r}
+lty <- c("11", "18", "1f", "81", "88", "8f", "f1", "f8", "ff")
+linetypes <- data.frame(
+  y = seq_along(lty),
+  lty = lty
+) 
+ggplot(linetypes, aes(0, y)) + 
+  geom_segment(aes(xend = 5, yend = y, linetype = lty)) + 
+  scale_linetype_identity() + 
+  geom_text(aes(label = lty), hjust = 0, nudge_y = 0.2) +
+  scale_x_continuous(NULL, breaks = NULL) + 
+  scale_y_reverse(NULL, breaks = NULL)
+```
+
+
+
+# Linewidth
+
+```{r}
+ggplot(iris,aes(Sepal.Length,Sepal.Width))+geom_line(lwd=0.1)
+ggplot(iris,aes(Sepal.Length,Sepal.Width))+geom_line(lwd= 0.5)
+
+ggplot(iris,aes(Sepal.Length,Sepal.Width))+geom_line(linewidth= 2)
+```
+
+
+# Point
+
+ [0,25]:
+
+```{r}
+shapes <- data.frame(
+  shape = c(0:19, 22, 21, 24, 23, 20),
+  x = 0:24 %/% 5,
+  y = -(0:24 %% 5)
+)
+ggplot(shapes, aes(x, y)) + 
+  geom_point(aes(shape = shape), size = 5, fill = "red") +
+  geom_text(aes(label = shape), hjust = 0, nudge_x = 0.15) +
+  scale_shape_identity() +
+  expand_limits(x = 4.1) +
+  theme_void()
+```
+
+
+
+形状的名字
+
+
+```{r}
+shape_names <- c(
+  "circle", paste("circle", c("open", "filled", "cross", "plus", "small")), "bullet",
+  "square", paste("square", c("open", "filled", "cross", "plus", "triangle")),
+  "diamond", paste("diamond", c("open", "filled", "plus")),
+  "triangle", paste("triangle", c("open", "filled", "square")),
+  paste("triangle down", c("open", "filled")),
+  "plus", "cross", "asterisk"
+)
+
+shapes <- data.frame(
+  shape_names = shape_names,
+  x = c(1:7, 1:6, 1:3, 5, 1:3, 6, 2:3, 1:3),
+  y = -rep(1:6, c(7, 6, 4, 4, 2, 3))
+)
+
+ggplot(shapes, aes(x, y)) +
+  geom_point(aes(shape = shape_names), fill = "red", size = 5) +
+  geom_text(aes(label = shape_names), nudge_y = -0.3, size = 3.5) +
+  scale_shape_identity() +
+  theme_void()
+```
+
+
+# font
+
+
+## Font family
+
+
+```{r}
+df <- data.frame(x = 1, y = 3:1, family = c("sans", "serif", "mono"))
+ggplot(df, aes(x, y)) + 
+  geom_text(aes(label = family, family = family))
+```
+
+
+## Font face
+
+```{r}
+df <- data.frame(x = 1:4, fontface = c("plain", "bold", "italic", "bold.italic"))
+ggplot(df, aes(1, x)) + 
+  geom_text(aes(label = fontface, fontface = fontface))
+```
+
+
+## Font size
+
+
+```{r}
+df <- data.frame(x = 1:4, fontface = c("plain", "bold", "italic", "bold.italic"),size=1:4)
+ggplot(df, aes(1, x)) + 
+  geom_text(aes(label = fontface, fontface = fontface,size=size))
+```
+
+
+## 中文
+
+中文无法修改font face，只能够通过需改字体实现。
+
+```
+library(showtext)
+font_families() # 列出可用字体，没有的字体手动 font_add 添加
+showtext_auto() # 调用 pdf cairo_pdf 等设备的时候 自动调用字体
+font_add('SourceHanSerifCN-Bold',regular = 'C:/Windows/fonts/SourceHanSerifCN-Bold.otf')  # 字体的路径，添加下载的字体
+font_add('SourceHanSerifCN-Regular',regular = 'C:/Windows/fonts/SourceHanSerifCN-Regular.otf') 
+# font_install(source_han_serif()) 网络好直接通过这个函数下载
+
+
+下载字体的url：https://github.com/adobe-fonts/source-han-serif/tree/release#downloading-source-han-serif
+
+```
+
+
+
+# Justification
+
+
+```{r}
+just <- expand.grid(hjust = c(0, 0.5, 1), vjust = c(0, 0.5, 1))
+just$label <- paste0(just$hjust, ", ", just$vjust)
+
+ggplot(just, aes(hjust, vjust)) +
+  geom_point(colour = "grey70", size = 5) + 
+  geom_text(aes(label = label, hjust = hjust, vjust = vjust))
+```
+
