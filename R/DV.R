@@ -489,27 +489,40 @@ YlabTheme <- function(ylabAxisTitleTextFace=NULL,
 #' Axis x range
 #'
 #' @param start start point of x axis
-#' @param   end point of x axis
+#' @param end point of x axis
+#' @param Breaks A numeric vector of positions
 #' @return A ggplot2 object
 
-Xlim <- function(start=NULL,end=NULL){ # 开始位置，结束位置
+Xlim <- function(start=NULL,end=NULL,Breaks){ # 开始位置，结束位置
   require(ggplot2)
-  xlim(start,end)
+  scale_x_continuous(limits = c(start,end),breaks = Breaks)
 }
-
 
 
 #' Axis y range
 #'
 #' @param start start point of y axis
 #' @param end end point of y axis
+#' @param Breaks A numeric vector of positions
 #' @return A ggplot2 object <-
 
-Ylim <- function(start=NULL,end=NULL){
+Ylim <- function(start=NULL,end=NULL,Breaks){
   require(ggplot2)
-  ylim(start,end)
+  scale_x_continuous(limits = c(start,end),breaks = Breaks)
 }
 
+
+
+#' Change line type
+#'
+#' @param value  a vector
+#' @return A ggplot2 object
+
+lineType <- function(value= c(1,1)){
+  require(ggplot2)
+  p <- scale_linetype_manual(values = value)
+  return(p)
+}
 
 
 # ggsave("test2.png", units="in", dpi=300, width=4, height=4, device="png")

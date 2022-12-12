@@ -4,12 +4,14 @@
 \alias{Xlim}
 \title{Axis x range}
 \usage{
-Xlim(start = NULL, end = NULL)
+Xlim(start = NULL, end = NULL, Breaks)
 }
 \arguments{
 \item{start}{start point of x axis}
 
 \item{end}{point of x axis}
+
+\item{Breaks}{A numeric vector of positions}
 }
 \value{
 A ggplot2 object

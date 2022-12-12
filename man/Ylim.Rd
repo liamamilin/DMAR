@@ -4,12 +4,14 @@
 \alias{Ylim}
 \title{Axis y range}
 \usage{
-Ylim(start = NULL, end = NULL)
+Ylim(start = NULL, end = NULL, Breaks)
 }
 \arguments{
 \item{start}{start point of y axis}
 
 \item{end}{end point of y axis}
+
+\item{Breaks}{A numeric vector of positions}
 }
 \value{
 A ggplot2 object <-
