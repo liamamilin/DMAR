@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/982708/0f583f73cb524729950df90a1787ff8c
+bundleId: https://api.rpubs.com/api/v1/document/982708/0f583f73cb524729950df90a1787ff8c
+url: http://rpubs.com/liam/982708
+when: 1671030704.11965
+lastSyncTime: 1671030704.11966
