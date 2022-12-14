@@ -177,3 +177,91 @@ ggplot(just, aes(hjust, vjust)) +
   geom_text(aes(label = label, hjust = hjust, vjust = vjust))
 ```
 
+
+# 添加标签
+
+以条形图为例子：
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(ggcharts)
+
+dreaded_lang <- tibble::tribble(
+  ~language, ~pct,
+  "VBA", 75.2,
+  "Objective-C", 68.7,
+  "Assembly", 64.4,
+  "C", 57.5,
+  "PHP", 54.2,
+  "Erlang", 52.6,
+  "Ruby", 49.7,
+  "R", 48.3,
+  "C++", 48.0,
+  "Java", 46.6
+)
+
+chart <- dreaded_lang %>%
+  bar_chart(language, pct) %>%
+  print()
+```
+
+当需要在条形图中添加注释时，你可以使用geom_text() 或者 geom_label()。这两个函数都需要x和y的坐标值，它将告诉ggplot2在哪里显示文本。
+也可以使用ggrepel包中的geom_text_repel和geom_label_repel
+
+
+```{r}
+library(patchwork)
+p1 <- chart + geom_text(aes(label = pct))
+p2 <- chart + geom_label(aes(label = pct))
+p3 <- chart + ggrepel::geom_text_repel(aes(label = pct))
+p4 <- chart + ggrepel::geom_text_repel(aes(label = pct))
+
+p1+p2+p3+p4
+```
+
+ 
+默认情况下，标签是以y值居中对齐的。 此种对齐方式浏览起来不够美观。 如果要使标签左对齐，可以将hjust参数设置为0或"left"。
+
+```{r}
+p1 <- chart + geom_text(aes(label = pct, hjust = "left"))
+p2 <- chart + geom_label(aes(label = pct, hjust = 0))
+p3 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = "left"))
+p4 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = 0))
+
+p1+p2+p3+p4
+```
+
+
+把hjust设置为负数，让标签与条形保持距离；同时增加y轴与条形头部之间的距离，使得图像更加美观。
+```{r}
+p1 <- chart + geom_text(aes(label = pct, hjust = -0.2))
+p2 <- chart + geom_label(aes(label = pct, hjust = -0.2))
+p3 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = -0.2))
+p4 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = -0.2))
+
+p1+p2+p3+p4
+```
+
+
+可以将标签至于条形之中
+```{r}
+p1 <- chart + geom_text(aes(label = pct, hjust = 1))
+p2 <- chart + geom_label(aes(label = pct, hjust = 1))
+p3 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = 1))
+p4 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = 1))
+
+p1+p2+p3+p4
+```
+
+修改颜色，大小，color是在aes（）之外定义的。
+
+```{r}
+p1 <- chart + geom_text(aes(label = pct, hjust = 1.2), color = "yellow",size=1)
+p2 <- chart + geom_label(aes(label = pct, hjust = 1.2), color = "yellow",size=1)
+p3 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = 1.2), color = "yellow",size=1)
+p4 <- chart + ggrepel::geom_text_repel(aes(label = pct, hjust = 1.2), color = "yellow",size=1)
+
+p1+p2+p3+p4
+```
+

@@ -46,6 +46,7 @@ TitleSetting <- function(titleText = NULL,
 #' Set Title theme
 #'
 #' @param ploTitleFace title face
+#' @param ploTitleFamily title font family
 #' @param ploTitleColor title color
 #' @param ploTitleSize tilte size
 #' @param ploTitleHjust title horizontal position
@@ -53,20 +54,20 @@ TitleSetting <- function(titleText = NULL,
 #' @param ploTitleAngle title angle
 #' @return  A ggolot2 object
 #'
-TitleTheme <- function(ploTitleFace = NULL,
-                        ploTitleColor = NULL,
-                        ploTitleSize=NULL,
-                        ploTitleHjust=NULL,
-                        ploTitleVjust=NULL,
-                        ploTitleAngle=NULL){
-  require(ggplot2)
-  titleTheme <- theme(plot.title = element_text(
-    face = ploTitleFace, # ("plain", "italic", "bold", "bold.italic")
-    colour = ploTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-    size = ploTitleSize,
-    hjust = ploTitleHjust, #0.5, # [0,1] 水平位置
-    vjust = ploTitleVjust, #0.9, # [0,1] 垂直位置
-    angle = ploTitleAngle, # [0,360]角度
+TitleTheme <- function(ploTitleFamily=NULL,
+                       ploTitleFace = NULL,
+                       ploTitleColor = NULL,
+                       ploTitleSize=NULL,
+                       ploTitleHjust=NULL,
+                       ploTitleVjust=NULL,
+                       ploTitleAngle=NULL){
+  titleTheme <- theme(plot.title = element_text(family = ploTitleFamily,
+                                                face = ploTitleFace, # ("plain", "italic", "bold", "bold.italic")
+                                                colour = ploTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                                size = ploTitleSize,
+                                                hjust = ploTitleHjust, #0.5, # [0,1] 水平位置
+                                                vjust = ploTitleVjust, #0.9, # [0,1] 垂直位置
+                                                angle = ploTitleAngle, # [0,360]角度
 
   ))
   return(titleTheme)
@@ -81,7 +82,8 @@ TitleTheme <- function(ploTitleFace = NULL,
 
 #' Set Subtitle theme
 #'
-#' @param ploSubtitleFace subtitle face
+#' @param ploSubtitleFace subtitle font face
+#' @param ploSubtitleFamily subtitle font family
 #' @param ploSubtitleColor subtitle color
 #' @param ploSubtitleSize subtitle size
 #' @param ploSubtitleHjust subtitle horizontal position
@@ -89,16 +91,15 @@ TitleTheme <- function(ploTitleFace = NULL,
 #' @param ploSubtitleAngle subtitle angle
 #' @return  A ggolot2 object
 #'
-
-
-SubtitleTheme <- function(ploSubtitleFace=NULL, # 副标题
+SubtitleTheme <- function(ploSubtitleFamily=NULL,
+                          ploSubtitleFace=NULL, # 副标题
                           ploSubtitleColor=NULL, # 颜色
                           ploSubtitleSize=NULL, # 大小
                           ploSubtitleHjust=NULL, # 水平位置
                           ploSubtitleVjust=NULL, #垂直位置
                           ploSubtitleAngle=0){
-  require(ggplot2)
   subtitleTheme <- theme(plot.subtitle = element_text(
+    family = ploSubtitleFamily,
     face = ploSubtitleFace, # ("plain", "italic", "bold", "bold.italic")
     colour = ploSubtitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
     size = ploSubtitleSize,
@@ -115,7 +116,8 @@ SubtitleTheme <- function(ploSubtitleFace=NULL, # 副标题
 
 #' Set Caption theme
 #'
-#' @param ploCaptionFace caption face
+#' @param ploCaptionFace caption font face
+#' @param ploCaptionFamily caption font family
 #' @param ploCaptionColor caption color
 #' @param ploCaptionSize caption size
 #' @param ploCaptionHjust caption horizontal position
@@ -124,16 +126,15 @@ SubtitleTheme <- function(ploSubtitleFace=NULL, # 副标题
 #' @return  A ggolot2 object
 #'
 
-
-
-CaptionTheme <- function(ploCaptionFace=NULL, # 说明文字
+CaptionTheme <- function(ploCaptionFamily=NULL,
+                         ploCaptionFace=NULL, # 说明文字
                          ploCaptionColor=NULL, # 说明文字颜色
                          ploCaptionSize=NULL,  # 大小
                          ploCaptionHjust=NULL, # 水平
                          ploCaptionVjust=NULL, # 垂直
                          ploCaptionAngle=NULL){
-  require(ggplot2)
   captionTheme <- theme(plot.caption = element_text(
+    family = ploCaptionFamily,
     face = ploCaptionFace, # ("plain", "italic", "bold", "bold.italic")
     colour = ploCaptionColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
     size = ploCaptionSize,
@@ -162,7 +163,7 @@ CaptionTheme <- function(ploCaptionFace=NULL, # 说明文字
 #' @return  A ggolot2 object
 #'
 
-AddLabel <- function(textLabelx=NULL, # 标签x轴位置
+AddAnnotate <- function(textLabelx=NULL, # 标签x轴位置
                      textLabely=NULL, # y轴位置
                      textLabel="text label", # 标签文本
                      textLabelColor=NULL, # 颜色
@@ -190,13 +191,15 @@ AddLabel <- function(textLabelx=NULL, # 标签x轴位置
 #' Color guide
 #'
 #' @param guideTitle legend title
-#' @param guideTitleFace legend face
+#' @param guideTitleFace legend font face
+#' @param guildTitleFamily legend font family
 #' @param guideTitleColor legend color
 #' @param guideTitleSize legend size
 #' @param guideTitleHjust legend x positon
 #' @param guideTitleVjust legend y position
 #' @param guideTitleAngle legend angle
-#' @param guideLabelFace legend label face
+#' @param guideLabelFace legend label font face
+#' @param guildLabelFamily legend label font family
 #' @param guideLabelColor legend lable color
 #' @param guideLabelSize legend label size
 #' @param guideLabelHjust  legend label x postion
@@ -205,42 +208,40 @@ AddLabel <- function(textLabelx=NULL, # 标签x轴位置
 #' @return  A ggolot2 object
 #'
 
-
-
-guideColorSetting <- function(guideTitle="图例标题", # 图例标题
-                              guideTitleFace=NULL, # 粗体/斜体
-                              guideTitleColor=NULL, # 颜色
-                              guideTitleSize=NULL, # 大小
-                              guideTitleHjust=NULL, # 水平位置
-                              guideTitleVjust=NULL, # 垂直位置
-                              guideTitleAngle=NULL, # 角度
-                              guideLabelFace=NULL, # 图例标签粗体/斜体
-                              guideLabelColor=NULL, # 颜色
-                              guideLabelSize=NULL, # 大小
-                              guideLabelHjust=NULL, # 水平位置
-                              guideLabelVjust=NULL, # 垂直位置
-                              guideLabelAngle=NULL # 角度
+GuildColorSetting <- function(guildTitle="图例标题", # 图例标题
+                              guildTitleFace=NULL, # 粗体/斜体
+                              guildTitleFamily=NULL,
+                              guildTitleColor=NULL, # 颜色
+                              guildTitleSize=NULL, # 大小
+                              guildTitleHjust=NULL, # 水平位置
+                              guildTitleVjust=NULL, # 垂直位置
+                              guildTitleAngle=NULL, # 角度
+                              guildLabelFace=NULL, # 图例标签粗体/斜体
+                              guildLabelFamily=NULL,
+                              guildLabelColor=NULL, # 颜色
+                              guildLabelSize=NULL, # 大小
+                              guildLabelHjust=NULL, # 水平位置
+                              guildLabelVjust=NULL, # 垂直位置
+                              guildLabelAngle=NULL # 角度
 ){
-  require(ggplot2)
-  guideSetting <-guides(colour= guide_legend(title=guideTitle,
-                                             title.theme = element_text(
-                                               face = guideTitleFace, # ("plain", "italic", "bold", "bold.italic")
-                                               colour = guideTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                               size = guideTitleSize,
-                                               hjust = guideTitleHjust, #0.5, # [0,1] 水平位置
-                                               vjust = guideTitleVjust, #0.9, # [0,1] 垂直位置
-                                               angle = guideTitleAngle, # [0,360]角度
-                                             ),
-                                             label.theme = element_text(
-                                               face = guideLabelFace, # ("plain", "italic", "bold", "bold.italic")
-                                               colour = guideLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                               size = guideLabelSize,
-                                               hjust = guideLabelHjust, #0.5, # [0,1] 水平位置
-                                               vjust = guideLabelVjust, #0.9, # [0,1] 垂直位置
-                                               angle = guideLabelAngle, # [0,360]角度
-                                             ))
+  guildSetting <-guides(colour=guide_legend(title=guildTitle,
+                                            title.theme = element_text(
+                                              family = guildTitleFamily,
+                                              face = guildTitleFace, # ("plain", "italic", "bold", "bold.italic")
+                                              colour = guildTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                              size = guildTitleSize,
+                                              angle = guildTitleAngle, # [0,360]角度
+                                            ),title.hjust = guildTitleHjust,title.vjust = guildTitleVjust,
+                                            label.vjust = guildTitleVjust,label.hjust = guildLabelHjust,
+                                            label.theme = element_text(
+                                              family = guildLabelFamily,
+                                              face = guildLabelFace, # ("plain", "italic", "bold", "bold.italic")
+                                              colour = guildLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                              size = guildLabelSize,
+                                              angle = guildLabelAngle, # [0,360]角度
+                                            )),linetype="none"
   )
-  return(guideSetting)
+  return(guildSetting)
 }
 
 
@@ -254,7 +255,7 @@ guideColorSetting <- function(guideTitle="图例标题", # 图例标题
 #' @param guideLabelcolor legend label color
 #' @return  A ggolot2 object
 #'
-guideColorLabelName <- function(guideLabelName=c("a","b"), # 图例标签名称/
+GuideColorLabelName <- function(guideLabelName=c("a","b"), # 图例标签名称/
                                 guideLabelcolor=c("red","yellow") # 图例标签颜色
 ){
   require(ggplot2)
@@ -272,13 +273,15 @@ guideColorLabelName <- function(guideLabelName=c("a","b"), # 图例标签名称/
 #' fill guide
 #'
 #' @param guideTitle legend title
-#' @param guideTitleFace legend face
+#' @param guideTitleFace legend font face
+#' @param guildTitleFamily legend font family
 #' @param guideTitleColor legend color
 #' @param guideTitleSize legend size
 #' @param guideTitleHjust legend x positon
 #' @param guideTitleVjust legend y position
 #' @param guideTitleAngle legend angle
-#' @param guideLabelFace legend label face
+#' @param guideLabelFace legend label font face
+#' @param guildLabelFamily legend label font family
 #' @param guideLabelColor legend lable color
 #' @param guideLabelSize legend label size
 #' @param guideLabelHjust  legend label x postion
@@ -287,39 +290,39 @@ guideColorLabelName <- function(guideLabelName=c("a","b"), # 图例标签名称/
 #' @return  A ggolot2 object
 #'
 
-guideFillSetting <- function(guideTitle="图例标题",
-                             guideTitleFace=NULL,
-                             guideTitleColor=NULL,
-                             guideTitleSize=NULL,
-                             guideTitleHjust=NULL,
-                             guideTitleVjust=NULL,
-                             guideTitleAngle=NULL,
-                             guideLabelFace=NULL,
-                             guideLabelColor=NULL,
-                             guideLabelSize=NULL,
-                             guideLabelHjust=NULL,
-                             guideLabelVjust=NULL,
-                             guideLabelAngle=NULL){
-  require(ggplot2)
-  guideSetting <-guides(fill= guide_legend(title=guideTitle,
+GuildFillSetting <- function(guildTitle="图例标题",
+                             guildTitleFace=NULL,
+                             guildTitleFamily=NULL,
+                             guildTitleColor=NULL,
+                             guildTitleSize=NULL,
+                             guildTitleHjust=NULL,
+                             guildTitleVjust=NULL,
+                             guildTitleAngle=NULL,
+                             guildLabelFace=NULL,
+                             guildLabelFamily=NULL,
+                             guildLabelColor=NULL,
+                             guildLabelSize=NULL,
+                             guildLabelHjust=NULL,
+                             guildLabelVjust=NULL,
+                             guildLabelAngle=NULL){
+  guildSetting <-guides(fill= guide_legend(title=guildTitle,
                                            title.theme = element_text(
-                                             face = guideTitleFace, # ("plain", "italic", "bold", "bold.italic")
-                                             colour = guideTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                             size = guideTitleSize,
-                                             hjust = guideTitleHjust, #0.5, # [0,1] 水平位置
-                                             vjust = guideTitleVjust, #0.9, # [0,1] 垂直位置
-                                             angle = guideTitleAngle, # [0,360]角度
-                                           ),
+                                             family = guildTitleFamily,
+                                             face = guildTitleFace, # ("plain", "italic", "bold", "bold.italic")
+                                             colour = guildTitleColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                             size = guildTitleSize,
+                                             angle = guildTitleAngle, # [0,360]角度
+                                           ),title.hjust = guildTitleHjust,title.vjust = guildTitleVjust,
+                                           label.hjust = guildLabelHjust,label.vjust = guildLabelVjust,
                                            label.theme = element_text(
-                                             face = guideLabelFace, # ("plain", "italic", "bold", "bold.italic")
-                                             colour = guideLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
-                                             size = guideLabelSize,
-                                             hjust = guideLabelHjust, #0.5, # [0,1] 水平位置
-                                             vjust = guideLabelVjust, #0.9, # [0,1] 垂直位置
-                                             angle = guideLabelAngle, # [0,360]角度
+                                             family = guildLabelFamily,
+                                             face = guildLabelFace, # ("plain", "italic", "bold", "bold.italic")
+                                             colour = guildLabelColor, # 可以是英文单词colors()，可以是rgb,rgb()可以是数字1表示的颜色是colors()[1]，可以是颜色十六进制代码Hex code：#69b3a2
+                                             size = guildLabelSize,
+                                             angle = guildLabelAngle, # [0,360]角度
                                            ))
-  )
-  return(guideSetting)
+  ) #+ theme(legend.position = legend.position)
+  return(guildSetting)
 }
 
 
@@ -331,10 +334,10 @@ guideFillSetting <- function(guideTitle="图例标题",
 #'
 #' @param guideLabelName legend label text
 #' @param guideLabelcolor legend label color
-#' @return  A ggolot2 object
+#' @return  A ggplot2 object
 #''
 
-guideFillLabelName <- function(guideLabelName=c("a","b"),
+GuideFillLabelName <- function(guideLabelName=c("a","b"),
                                guideLabelcolor=c("red","yellow")){
   require(ggplot2)
   showtext::showtext_auto()
@@ -343,6 +346,15 @@ guideFillLabelName <- function(guideLabelName=c("a","b"),
   return(guideLabel)
 }
 
+
+#' Change legend position
+#'
+#' @param legend.position Position of legend. option left, right, top, bottom or two element numeric vector
+#' @return A ggplot2 object
+
+legendPosition <- function(legend.position="left"){
+  p <- theme(legend.position = legend.position)
+}
 
 
 #' Axis x

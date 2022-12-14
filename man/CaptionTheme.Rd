@@ -5,6 +5,7 @@
 \title{Set Caption theme}
 \usage{
 CaptionTheme(
+  ploCaptionFamily = NULL,
   ploCaptionFace = NULL,
   ploCaptionColor = NULL,
   ploCaptionSize = NULL,
@@ -14,7 +15,9 @@ CaptionTheme(
 )
 }
 \arguments{
-\item{ploCaptionFace}{caption face}
+\item{ploCaptionFamily}{caption font family}
+
+\item{ploCaptionFace}{caption font face}
 
 \item{ploCaptionColor}{caption color}
 

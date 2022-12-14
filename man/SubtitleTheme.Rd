@@ -5,6 +5,7 @@
 \title{Set Subtitle theme}
 \usage{
 SubtitleTheme(
+  ploSubtitleFamily = NULL,
   ploSubtitleFace = NULL,
   ploSubtitleColor = NULL,
   ploSubtitleSize = NULL,
@@ -14,7 +15,9 @@ SubtitleTheme(
 )
 }
 \arguments{
-\item{ploSubtitleFace}{subtitle face}
+\item{ploSubtitleFamily}{subtitle font family}
+
+\item{ploSubtitleFace}{subtitle font face}
 
 \item{ploSubtitleColor}{subtitle color}
 

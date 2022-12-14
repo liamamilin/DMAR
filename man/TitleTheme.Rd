@@ -5,6 +5,7 @@
 \title{Set Title theme}
 \usage{
 TitleTheme(
+  ploTitleFamily = NULL,
   ploTitleFace = NULL,
   ploTitleColor = NULL,
   ploTitleSize = NULL,
@@ -14,6 +15,8 @@ TitleTheme(
 )
 }
 \arguments{
+\item{ploTitleFamily}{title font family}
+
 \item{ploTitleFace}{title face}
 
 \item{ploTitleColor}{title color}
